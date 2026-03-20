@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+page {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+view,
+text,
+button {
+  box-sizing: border-box;
+}
