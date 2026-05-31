@@ -13,9 +13,10 @@ export default function ErrorState({
   actions
 }: ErrorStateProps) {
   return (
-    <View className="rounded-2xl bg-rose-50 px-6 py-10 shadow-sm">
+    <View className="rounded-lg border border-rose-100 bg-rose-50 px-6 py-10 shadow-sm">
+      <View className="mx-auto mb-4 h-12 w-12 rounded-full bg-rose-100" />
       <Text className="block text-center text-base font-medium text-rose-900">{title}</Text>
-      <Text className="mt-2 block text-center text-sm text-rose-700">{description}</Text>
+      <Text className="mt-2 block text-center text-sm leading-6 text-rose-700">{description}</Text>
       {actions ? <View className="mt-5 flex justify-center">{actions}</View> : null}
     </View>
   )

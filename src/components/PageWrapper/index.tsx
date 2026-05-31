@@ -16,15 +16,15 @@ export default function PageWrapper({
   children
 }: PageWrapperProps) {
   return (
-    <View className="min-h-screen bg-gray-100 px-6 py-8">
-      <View className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-        <View className="rounded-3xl bg-slate-900 px-6 py-7 text-white shadow-lg">
+    <View className="min-h-screen px-5 py-7">
+      <View className="mx-auto flex w-full max-w-3xl flex-col gap-5">
+        <View className="overflow-hidden rounded-lg bg-slate-950 px-6 py-7 text-white shadow-lg">
           <View className="flex items-start justify-between gap-4">
             <View className="flex-1">
-              <Text className="block text-3xl font-semibold">{title}</Text>
+              <Text className="block text-2xl font-semibold">{title}</Text>
               {description
                 ? (
-                    <Text className="mt-2 block text-sm text-slate-300">
+                    <Text className="mt-2 block text-sm leading-6 text-slate-300">
                       {description}
                     </Text>
                   )

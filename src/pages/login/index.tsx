@@ -18,11 +18,15 @@ export default function LoginPage() {
       switchTab(RouteName.HOME)
     }
   })
+  const canSubmit = account.trim().length > 0 && password.length > 0 && !loginMutation.isPending
 
   const submitAccountLogin = () => {
+    if (!canSubmit)
+      return
+
     loginMutation.mutate({
       loginType: 'account',
-      account,
+      account: account.trim(),
       password
     })
   }
@@ -33,20 +37,22 @@ export default function LoginPage() {
       description="轻量工程骨架，内置路由、缓存、认证、页面状态和服务端状态能力。"
       contentClassName="justify-center"
     >
-      <View className="rounded-2xl bg-white p-6 shadow-sm">
-        <Text className="block text-base font-medium text-gray-900">登录入口</Text>
-        <Text className="mt-2 block text-sm text-gray-500">
+      <View className="app-card p-6">
+        <Text className="block text-xl font-semibold text-gray-900">登录入口</Text>
+        <Text className="mt-2 block text-sm leading-6 text-gray-500">
           当前仍可命中 mock 登录接口，参数结构已按真实登录预留。
         </Text>
         <View className="mt-5 flex flex-col gap-3">
+          <Text className="text-xs font-medium text-gray-500">账号</Text>
           <Input
-            className="rounded-xl bg-gray-100 px-4 py-3 text-sm text-gray-900"
+            className="app-input"
             placeholder="账号"
             value={account}
             onInput={event => setAccount(event.detail.value)}
           />
+          <Text className="text-xs font-medium text-gray-500">密码</Text>
           <Input
-            className="rounded-xl bg-gray-100 px-4 py-3 text-sm text-gray-900"
+            className="app-input"
             password
             placeholder="密码"
             value={password}
@@ -54,7 +60,8 @@ export default function LoginPage() {
           />
         </View>
         <Button
-          className="mt-5 w-full rounded-xl bg-blue-600 text-white"
+          className="app-button mt-6 w-full"
+          disabled={!canSubmit}
           loading={loginMutation.isPending}
           onClick={submitAccountLogin}
         >
