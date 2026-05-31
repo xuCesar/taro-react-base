@@ -47,8 +47,14 @@ src
 - `mock/index.ts` 提供开发期 mock 登录、刷新 token 和当前用户接口
 - `src/api/core/http.ts` 提供统一错误处理和 toast 反馈
 - `src/api/core/auth.ts` 提供 token 持久化、清理和 refresh token 串行刷新
-- `src/api/template/` 提供推荐的 API module + hooks 写法
+- `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
+
+## 业务模块规范
+
+新增业务优先按 `api/endpoints/<module>.ts`、`hooks/use<Module>.ts`、`pages/<module>` 三层拆分。接口类型和 API 方法放在 endpoints，React Query 状态和缓存失效放在 hooks，页面只消费 hooks 并处理展示状态。
+
+更完整的约定见 `docs/business-module.md`，可复制模板见 `templates/business-module`。
 
 ## 下一步建议
 
