@@ -59,6 +59,10 @@ src
 
 原生 tabBar 不属于页面 DOM，主题切换时通过 `Taro.setTabBarStyle` 和 `Taro.setTabBarItem` 同步颜色与图标。新增主题如果需要不同 tabBar 图标，需要准备对应 PNG 并写入主题配置的 `tabBar.list`。
 
+## 登录守卫
+
+路由权限配置在 `src/constants/routes.ts` 的 `ROUTE_AUTH_CONFIG`。受保护页面调用 `useAuthGuard()` 后，会在未登录时跳转到登录页，并携带当前页面作为 `redirect` 参数。登录成功后通过 `redirectAfterLogin()` 回到原页面；如果原页面是 tabBar 页面，会自动使用 `switchTab`。
+
 ## 业务模块规范
 
 新增业务优先按 `api/endpoints/<module>.ts`、`hooks/use<Module>.ts`、`pages/<module>` 三层拆分。接口类型和 API 方法放在 endpoints，React Query 状态和缓存失效放在 hooks，页面只消费 hooks 并处理展示状态。

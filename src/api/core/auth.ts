@@ -1,8 +1,7 @@
 import Taro from '@tarojs/taro'
 import { cache } from '@/cache'
-import { RouteName } from '@/constants/routes'
 import { useUserStore } from '@/models/user'
-import { reLaunch } from '@/router'
+import { redirectToLogin } from '@/router/auth'
 import { RequestError } from './errors'
 
 export interface AuthPayload {
@@ -26,7 +25,7 @@ export function clearAuthState(options?: { redirect?: boolean }) {
   cache.remove('expiresAt')
   useUserStore.getState().clearAuth()
   if (options?.redirect)
-    reLaunch(RouteName.LOGIN)
+    redirectToLogin()
 }
 
 export function isAccessTokenExpired() {

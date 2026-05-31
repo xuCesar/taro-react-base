@@ -5,8 +5,7 @@ import { LogIn, ShieldCheck } from 'lucide-react-taro'
 import PageWrapper from '@/components/PageWrapper'
 import { type LoginParams, loginApi } from '@/api/endpoints/auth'
 import { saveAuthPayload } from '@/api/core/auth'
-import { RouteName } from '@/constants/routes'
-import { switchTab } from '@/router'
+import { redirectAfterLogin } from '@/router/auth'
 
 export default function LoginPage() {
   const [account, setAccount] = useState('demo')
@@ -16,7 +15,7 @@ export default function LoginPage() {
     mutationFn: (params: LoginParams) => loginApi(params),
     onSuccess: (data) => {
       saveAuthPayload(data)
-      switchTab(RouteName.HOME)
+      redirectAfterLogin()
     }
   })
   const canSubmit = account.trim().length > 0 && password.length > 0 && !loginMutation.isPending

@@ -15,3 +15,15 @@ export const ROUTES = {
 export const TAB_BAR_ROUTE_NAMES = [RouteName.HOME, RouteName.PROFILE] as const
 
 export const TAB_BAR_PAGES = THEMES[DEFAULT_THEME].tabBar.list
+
+export const ROUTE_AUTH_CONFIG = {
+  [RouteName.LOGIN]: {
+    required: false
+  },
+  [RouteName.HOME]: {
+    required: true
+  },
+  [RouteName.PROFILE]: {
+    required: true
+  }
+} as const

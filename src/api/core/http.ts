@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
-import { RouteName } from '@/constants/routes'
-import { reLaunch } from '@/router'
+import { redirectToLogin } from '@/router/auth'
 import { clearAuthState, ensureAccessToken } from './auth'
 import { RequestError, isUnauthorizedError } from './errors'
 
@@ -53,7 +52,7 @@ export async function request<T>(url: string, options: RequestOptions = {}) {
     .catch((error: unknown) => {
       if (isUnauthorizedError(error)) {
         clearAuthState()
-        reLaunch(RouteName.LOGIN)
+        redirectToLogin()
       }
 
       if (options.showErrorToast !== false) {

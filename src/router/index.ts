@@ -39,3 +39,8 @@ export function navigateBack(delta = 1) {
 export function isTabBarRoute(name: RouteName) {
   return TAB_BAR_ROUTE_NAMES.includes(name as (typeof TAB_BAR_ROUTE_NAMES)[number])
 }
+
+export function getRouteNameByPath(path: string) {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  return Object.entries(ROUTES).find(([, routePath]) => routePath === normalizedPath)?.[0] as RouteName | undefined
+}
