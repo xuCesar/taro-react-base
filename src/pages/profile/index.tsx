@@ -1,4 +1,5 @@
 import { Button, Text, View } from '@tarojs/components'
+import { RotateCcw, UserRound } from 'lucide-react-taro'
 import { clearAuthState } from '@/api/core/auth'
 import ErrorState from '@/components/ErrorState'
 import LoadingState from '@/components/LoadingState'
@@ -35,7 +36,14 @@ export default function ProfilePage() {
             <ErrorState
               title="用户信息加载失败"
               description={error instanceof Error ? error.message : '请稍后重试'}
-              actions={<Button className="app-button px-6" onClick={() => refetch()}>重新加载</Button>}
+              actions={(
+                <Button className="app-button px-6" onClick={() => refetch()}>
+                  <View className="flex items-center justify-center gap-2">
+                    <RotateCcw size={20} color="#ffffff" />
+                    <Text className="text-white">重新加载</Text>
+                  </View>
+                </Button>
+              )}
             />
           )
         : null}
@@ -43,6 +51,9 @@ export default function ProfilePage() {
         ? (
             <>
               <View className="app-card p-6">
+                <View className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
+                  <UserRound size={24} color="#2563eb" />
+                </View>
                 <Text className="block text-xl font-semibold text-gray-900">用户信息</Text>
                 <Text className="mt-2 block text-sm leading-6 text-gray-500">
                   {`当前用户：${data?.nickname || '未接入真实接口'}`}

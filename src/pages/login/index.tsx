@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Button, Input, Text, View } from '@tarojs/components'
 import { useMutation } from '@tanstack/react-query'
+import { LogIn, ShieldCheck } from 'lucide-react-taro'
 import PageWrapper from '@/components/PageWrapper'
 import { type LoginParams, loginApi } from '@/api/endpoints/auth'
 import { saveAuthPayload } from '@/api/core/auth'
@@ -38,6 +39,9 @@ export default function LoginPage() {
       contentClassName="justify-center"
     >
       <View className="app-card p-6">
+        <View className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
+          <ShieldCheck size={24} color="#2563eb" />
+        </View>
         <Text className="block text-xl font-semibold text-gray-900">登录入口</Text>
         <Text className="mt-2 block text-sm leading-6 text-gray-500">
           当前仍可命中 mock 登录接口，参数结构已按真实登录预留。
@@ -65,7 +69,10 @@ export default function LoginPage() {
           loading={loginMutation.isPending}
           onClick={submitAccountLogin}
         >
-          账号登录
+          <View className="flex items-center justify-center gap-2">
+            <LogIn size={20} color="#ffffff" />
+            <Text className="text-white">账号登录</Text>
+          </View>
         </Button>
       </View>
     </PageWrapper>

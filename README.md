@@ -8,6 +8,7 @@
 - React 18
 - TypeScript 5
 - TailwindCSS + weapp-tailwindcss
+- lucide-react-taro
 - Zustand
 - React Query
 - Taro.request 封装请求层

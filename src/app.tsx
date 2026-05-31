@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { useDidShow, useLaunch } from '@tarojs/taro'
+import { LucideTaroProvider } from 'lucide-react-taro'
 import { queryClient } from '@/lib/react-query'
 import { bootstrapApp } from '@/utils/bootstrap'
 import './app.scss'
@@ -15,7 +16,11 @@ function App({ children }: PropsWithChildren) {
     console.info('taro-react-base visible')
   })
 
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  return (
+    <LucideTaroProvider defaultColor="#475569" defaultSize={20}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </LucideTaroProvider>
+  )
 }
 
 export default App
