@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
+import { toastError } from '@/feedback'
 import { redirectToLogin } from '@/router/auth'
 import { clearAuthState, ensureAccessToken } from './auth'
-import { RequestError, isUnauthorizedError } from './errors'
+import { AppErrorType, RequestError, isUnauthorizedError } from './errors'
 
 export interface ApiResponse<T> {
   success: boolean
@@ -45,7 +46,10 @@ export async function request<T>(url: string, options: RequestOptions = {}) {
         }))
       },
       fail: (error) => {
-        reject(new RequestError(error.errMsg || 'Network error'))
+        reject(new RequestError(error.errMsg || 'Network error', {
+          type: AppErrorType.NETWORK,
+          details: error
+        }))
       }
     })
   })
@@ -56,11 +60,7 @@ export async function request<T>(url: string, options: RequestOptions = {}) {
       }
 
       if (options.showErrorToast !== false) {
-        const message = error instanceof Error ? error.message : 'Request failed'
-        Taro.showToast({
-          title: message,
-          icon: 'none'
-        })
+        toastError(error)
       }
 
       throw error

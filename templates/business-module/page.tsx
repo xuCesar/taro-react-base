@@ -18,7 +18,7 @@ export default function __PascalModule__Page() {
         ? (
             <ErrorState
               title="__ModuleTitle__加载失败"
-              description={error instanceof Error ? error.message : '请稍后重试'}
+              error={error}
               actions={<Button onClick={() => refetch()}>重新加载</Button>}
             />
           )

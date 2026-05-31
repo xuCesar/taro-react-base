@@ -38,7 +38,7 @@ export default function ProfilePage() {
         ? (
             <ErrorState
               title="用户信息加载失败"
-              description={error instanceof Error ? error.message : '请稍后重试'}
+              error={error}
               actions={(
                 <Button className="app-button px-6" onClick={() => refetch()}>
                   <View className="flex items-center justify-center gap-2">

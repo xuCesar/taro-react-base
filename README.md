@@ -28,6 +28,8 @@ src
 ├── components     # PageWrapper、LoadingState、EmptyState、ErrorState 等页面基础组件
 ├── cache          # typed cache
 ├── constants      # 常量和路由定义
+├── errors         # 错误分类、标准化和用户友好文案
+├── feedback       # toast、loading、confirm 等统一反馈 API
 ├── hooks          # 业务 hooks
 ├── lib            # 第三方库初始化
 ├── models         # Zustand store
@@ -52,6 +54,11 @@ src
 - `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
 - `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
+- `src/errors/` 和 `src/feedback/` 提供统一错误分类、友好文案和用户反馈 API
+
+## 错误与反馈
+
+请求错误会被标准化为 `AppError` / `RequestError`，并按网络异常、未授权、参数校验、服务端错误、业务错误等类型生成用户友好文案。业务代码优先使用 `src/feedback` 暴露的 `toastSuccess`、`toastError`、`showLoading`、`confirm`，页面错误态可直接把 error 传给 `ErrorState`。
 
 ## 主题扩展
 

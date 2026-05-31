@@ -2,7 +2,7 @@ import Taro from '@tarojs/taro'
 import { cache } from '@/cache'
 import { useUserStore } from '@/models/user'
 import { redirectToLogin } from '@/router/auth'
-import { RequestError } from './errors'
+import { AppErrorType, RequestError } from './errors'
 
 export interface AuthPayload {
   accessToken: string
@@ -69,7 +69,10 @@ async function requestRefreshToken() {
         }))
       },
       fail: (error) => {
-        reject(new RequestError(error.errMsg || 'Refresh token failed'))
+        reject(new RequestError(error.errMsg || 'Refresh token failed', {
+          type: AppErrorType.NETWORK,
+          details: error
+        }))
       }
     })
   })
