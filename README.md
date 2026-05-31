@@ -48,7 +48,7 @@ src
 
 ## 已补充的正式能力
 
-- `mock/index.ts` 提供开发期 mock 登录、刷新 token 和当前用户接口
+- `mock/index.ts` 提供开发期 mock 登录、刷新 token、当前用户和异常场景
 - `src/api/core/http.ts` 提供统一错误处理和 toast 反馈
 - `src/api/core/auth.ts` 提供 token 持久化、清理和 refresh token 串行刷新
 - `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
@@ -59,6 +59,10 @@ src
 ## 错误与反馈
 
 请求错误会被标准化为 `AppError` / `RequestError`，并按网络异常、未授权、参数校验、服务端错误、业务错误等类型生成用户友好文案。业务代码优先使用 `src/feedback` 暴露的 `toastSuccess`、`toastError`、`showLoading`、`confirm`，页面错误态可直接把 error 传给 `ErrorState`。
+
+## Mock 场景
+
+开发期 mock 支持成功、登录失败、401、500、空用户和 refresh token 失败等场景，可通过 `/mock/scenario`、请求 query、请求 header 或 `MOCK_SCENARIO` 环境变量切换。详细用法见 `docs/mock-scenarios.md`。
 
 ## 主题扩展
 
