@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
 import { RouteName } from '@/constants/routes'
-import { cache } from '@/cache'
 import { reLaunch } from '@/router'
 import { clearAuthState, ensureAccessToken } from './auth'
 import { RequestError, isUnauthorizedError } from './errors'

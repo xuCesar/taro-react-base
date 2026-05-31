@@ -54,6 +54,7 @@ src
 
 1. 安装依赖：`pnpm install`
 2. 本地运行：`pnpm dev:weapp` 或 `pnpm dev:h5`
-3. 接入真实登录接口，替换 `loginApi`
-4. 补充 `refresh token` 真正的刷新逻辑
-5. 按业务模块继续扩展 `api/endpoints` 和 `hooks`
+3. 复制 `.env.example` 为本地环境文件，并填入真实 API 地址
+4. 接入真实登录接口，按账号、手机号或微信登录传入 `loginApi`
+5. 补充 `refresh token` 真正的刷新逻辑
+6. 按业务模块继续扩展 `api/endpoints` 和 `hooks`
