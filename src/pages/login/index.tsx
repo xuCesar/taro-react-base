@@ -39,22 +39,22 @@ export default function LoginPage() {
       contentClassName="justify-center"
     >
       <View className="app-card p-6">
-        <View className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
-          <ShieldCheck size={24} color="#2563eb" />
+        <View className="app-icon-surface mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+          <ShieldCheck size={24} color="inherit" />
         </View>
-        <Text className="block text-xl font-semibold text-gray-900">登录入口</Text>
-        <Text className="mt-2 block text-sm leading-6 text-gray-500">
+        <Text className="app-text-primary block text-xl font-semibold">登录入口</Text>
+        <Text className="app-text-muted mt-2 block text-sm leading-6">
           当前仍可命中 mock 登录接口，参数结构已按真实登录预留。
         </Text>
         <View className="mt-5 flex flex-col gap-3">
-          <Text className="text-xs font-medium text-gray-500">账号</Text>
+          <Text className="app-text-muted text-xs font-medium">账号</Text>
           <Input
             className="app-input"
             placeholder="账号"
             value={account}
             onInput={event => setAccount(event.detail.value)}
           />
-          <Text className="text-xs font-medium text-gray-500">密码</Text>
+          <Text className="app-text-muted text-xs font-medium">密码</Text>
           <Input
             className="app-input"
             password

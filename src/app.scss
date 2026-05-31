@@ -18,34 +18,83 @@ button::after {
   border: 0;
 }
 
+.app-theme-light {
+  --app-bg: #eef2f7;
+  --app-header-bg: #0f172a;
+  --app-header-text: #ffffff;
+  --app-header-muted: #cbd5e1;
+  --app-card-bg: rgba(255, 255, 255, 0.96);
+  --app-soft-card-bg: rgba(255, 255, 255, 0.78);
+  --app-border: rgba(15, 23, 42, 0.06);
+  --app-text-primary: #111827;
+  --app-text-muted: #64748b;
+  --app-input-bg: #f8fafc;
+  --app-input-border: #dbe3ef;
+  --app-input-text: #0f172a;
+  --app-primary: #2563eb;
+  --app-primary-soft: #eff6ff;
+  --app-danger: #be123c;
+  --app-danger-soft: #fff1f2;
+  --app-danger-border: #ffe4e6;
+  --app-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --app-soft-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.app-theme-dark {
+  --app-bg: #0f172a;
+  --app-header-bg: #020617;
+  --app-header-text: #f8fafc;
+  --app-header-muted: #94a3b8;
+  --app-card-bg: rgba(30, 41, 59, 0.96);
+  --app-soft-card-bg: rgba(30, 41, 59, 0.72);
+  --app-border: rgba(148, 163, 184, 0.18);
+  --app-text-primary: #f8fafc;
+  --app-text-muted: #cbd5e1;
+  --app-input-bg: #111827;
+  --app-input-border: #334155;
+  --app-input-text: #f8fafc;
+  --app-primary: #60a5fa;
+  --app-primary-soft: rgba(37, 99, 235, 0.18);
+  --app-danger: #fb7185;
+  --app-danger-soft: rgba(190, 18, 60, 0.16);
+  --app-danger-border: rgba(251, 113, 133, 0.22);
+  --app-shadow: 0 12px 30px rgba(0, 0, 0, 0.26);
+  --app-soft-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.app-page {
+  background: var(--app-bg);
+  color: var(--app-text-primary);
+}
+
 .app-card {
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  background: var(--app-card-bg);
+  box-shadow: var(--app-shadow);
 }
 
 .app-soft-card {
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--app-border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  background: var(--app-soft-card-bg);
+  box-shadow: var(--app-soft-shadow);
 }
 
 .app-input {
   min-height: 92px;
-  border: 1px solid #dbe3ef;
+  border: 1px solid var(--app-input-border);
   border-radius: 8px;
-  background: #f8fafc;
+  background: var(--app-input-bg);
   padding: 0 28px;
-  color: #0f172a;
+  color: var(--app-input-text);
   font-size: 28px;
 }
 
 .app-button {
   min-height: 92px;
   border-radius: 8px;
-  background: #2563eb;
+  background: var(--app-primary);
   color: #ffffff;
   font-size: 30px;
   font-weight: 600;
@@ -62,8 +111,61 @@ button::after {
 .app-warn-button {
   min-height: 64px;
   border-radius: 8px;
-  background: #fff1f2;
-  color: #be123c;
+  background: var(--app-danger-soft);
+  color: var(--app-danger);
   font-size: 24px;
   line-height: 64px;
+}
+
+.app-header {
+  background: var(--app-header-bg);
+  color: var(--app-header-text);
+}
+
+.app-header-muted {
+  color: var(--app-header-muted);
+}
+
+.app-text-primary {
+  color: var(--app-text-primary);
+}
+
+.app-text-muted {
+  color: var(--app-text-muted);
+}
+
+.app-icon-surface {
+  background: var(--app-primary-soft);
+}
+
+.app-error-card {
+  border: 1px solid var(--app-danger-border);
+  border-radius: 8px;
+  background: var(--app-danger-soft);
+  box-shadow: var(--app-soft-shadow);
+}
+
+.app-danger-icon-surface {
+  background: var(--app-danger-border);
+}
+
+.app-text-danger {
+  color: var(--app-danger);
+}
+
+.app-theme-option {
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  background: var(--app-soft-card-bg);
+  color: var(--app-text-muted);
+}
+
+.app-theme-option-active {
+  border-color: var(--app-primary);
+  background: var(--app-primary-soft);
+  color: var(--app-text-primary);
+}
+
+.app-theme-option-disabled {
+  opacity: 0.48;
 }

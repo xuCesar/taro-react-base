@@ -33,6 +33,7 @@ src
 ├── models         # Zustand store
 ├── pages          # 页面
 ├── router         # 类型安全路由
+├── theme          # 主题配置
 └── utils          # 启动与工具函数
 ```
 
@@ -50,6 +51,13 @@ src
 - `src/api/core/auth.ts` 提供 token 持久化、清理和 refresh token 串行刷新
 - `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
+- `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
+
+## 主题扩展
+
+主题入口在 `src/theme/index.ts`，当前内置 `light` 和 `dark`。主题切换能力默认需要在“我的”页启用，未启用时统一使用默认浅色主题。新增主题时，在 `THEMES` 中补充主题配置，再在 `src/app.scss` 中增加对应的 `.app-theme-<name>` CSS 变量即可。页面和组件优先使用 `app-card`、`app-text-primary`、`app-text-muted`、`app-button` 等语义类，避免直接写固定颜色。
+
+原生 tabBar 不属于页面 DOM，主题切换时通过 `Taro.setTabBarStyle` 和 `Taro.setTabBarItem` 同步颜色与图标。新增主题如果需要不同 tabBar 图标，需要准备对应 PNG 并写入主题配置的 `tabBar.list`。
 
 ## 业务模块规范
 

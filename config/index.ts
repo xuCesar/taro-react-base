@@ -6,6 +6,8 @@ import devConfig from './dev'
 import prodConfig from './prod'
 
 const disabled = ['h5', 'rn'].includes(process.env.TARO_ENV || '')
+const taroEnv = process.env.TARO_ENV || 'weapp'
+const outputRoot = `dist/${taroEnv}`
 
 export default defineConfig(async (merge) => {
   const baseConfig: UserConfigExport = {
@@ -19,7 +21,16 @@ export default defineConfig(async (merge) => {
       828: 1.81 / 2
     },
     sourceRoot: 'src',
-    outputRoot: `dist/${process.env.TARO_ENV || 'weapp'}`,
+    outputRoot,
+    copy: {
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../src/assets'),
+          to: path.resolve(__dirname, `../${outputRoot}/assets`)
+        }
+      ],
+      options: {}
+    },
     plugins: ['@tarojs/plugin-html'],
     alias: {
       '@': path.resolve(__dirname, '../src')

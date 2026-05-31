@@ -1,4 +1,7 @@
 import { TAB_BAR_PAGES } from '@/constants/routes'
+import { DEFAULT_THEME, THEMES } from '@/theme'
+
+const defaultTheme = THEMES[DEFAULT_THEME]
 
 export default defineAppConfig({
   entryPagePath: 'pages/login/index',
@@ -14,9 +17,10 @@ export default defineAppConfig({
     backgroundTextStyle: 'light'
   },
   tabBar: {
-    color: '#6b7280',
-    selectedColor: '#2563eb',
-    backgroundColor: '#ffffff',
-    list: TAB_BAR_PAGES
+    color: defaultTheme.tabBar.color,
+    selectedColor: defaultTheme.tabBar.selectedColor,
+    backgroundColor: defaultTheme.tabBar.backgroundColor,
+    borderStyle: defaultTheme.tabBar.borderStyle,
+    list: TAB_BAR_PAGES.map(item => ({ ...item }))
   }
 })

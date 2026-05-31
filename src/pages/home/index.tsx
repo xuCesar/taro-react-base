@@ -16,24 +16,24 @@ export default function HomePage() {
       actions={<Button className="app-warn-button px-4" size="mini" onClick={() => navigateTo(RouteName.PROFILE)}>我的</Button>}
     >
       <View className="app-card p-6">
-        <View className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
-          <House size={24} color="#2563eb" />
+        <View className="app-icon-surface mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+          <House size={24} color="inherit" />
         </View>
-        <Text className="block text-lg font-semibold text-gray-900">已集成能力</Text>
-        <Text className="mt-2 block text-sm leading-6 text-gray-500">
+        <Text className="app-text-primary block text-lg font-semibold">已集成能力</Text>
+        <Text className="app-text-muted mt-2 block text-sm leading-6">
           Taro 4、React Query、类型安全路由、typed cache、Taro.request 请求层。
         </Text>
       </View>
       <View className="grid grid-cols-2 gap-3">
         <View className="app-soft-card p-4">
           <Layers size={20} color="#0f766e" />
-          <Text className="block text-xs text-gray-500">状态管理</Text>
-          <Text className="mt-1 block text-base font-semibold text-gray-900">Zustand</Text>
+          <Text className="app-text-muted block text-xs">状态管理</Text>
+          <Text className="app-text-primary mt-1 block text-base font-semibold">Zustand</Text>
         </View>
         <View className="app-soft-card p-4">
           <Database size={20} color="#9333ea" />
-          <Text className="block text-xs text-gray-500">服务端数据</Text>
-          <Text className="mt-1 block text-base font-semibold text-gray-900">React Query</Text>
+          <Text className="app-text-muted block text-xs">服务端数据</Text>
+          <Text className="app-text-primary mt-1 block text-base font-semibold">React Query</Text>
         </View>
       </View>
       <EmptyState

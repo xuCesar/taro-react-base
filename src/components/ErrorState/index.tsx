@@ -14,12 +14,12 @@ export default function ErrorState({
   actions
 }: ErrorStateProps) {
   return (
-    <View className="rounded-lg border border-rose-100 bg-rose-50 px-6 py-10 shadow-sm">
-      <View className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-rose-100">
-        <CircleAlert size={24} color="#be123c" />
+    <View className="app-error-card px-6 py-10">
+      <View className="app-danger-icon-surface mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
+        <CircleAlert size={24} color="inherit" />
       </View>
-      <Text className="block text-center text-base font-medium text-rose-900">{title}</Text>
-      <Text className="mt-2 block text-center text-sm leading-6 text-rose-700">{description}</Text>
+      <Text className="app-text-primary block text-center text-base font-medium">{title}</Text>
+      <Text className="app-text-danger mt-2 block text-center text-sm leading-6">{description}</Text>
       {actions ? <View className="mt-5 flex justify-center">{actions}</View> : null}
     </View>
   )
