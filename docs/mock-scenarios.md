@@ -43,6 +43,7 @@ curl http://127.0.0.1:9527/user/me \
 启动 Taro 前也可以通过环境变量设置默认场景：
 
 ```bash
-MOCK_SCENARIO=login-failed pnpm dev:weapp
+TARO_APP_MOCK_SCENARIO=login-failed pnpm dev:weapp
 ```
 
+`MOCK_SCENARIO` 仍然兼容，但新代码优先使用 `TARO_APP_MOCK_SCENARIO`。该变量会被配置中心读取，并在请求时自动注入 `x-mock-scenario`。

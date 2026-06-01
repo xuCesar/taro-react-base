@@ -13,6 +13,7 @@
 - React Query
 - Taro.request 封装请求层
 - Typed Cache
+- 配置中心
 - 类型安全路由
 - mock 开发数据
 - refresh token 基础链路
@@ -27,6 +28,7 @@ src
 │   └── template   # 推荐的 API 模块模板
 ├── components     # PageWrapper、LoadingState、EmptyState、ErrorState 等页面基础组件
 ├── cache          # typed cache
+├── config         # 应用配置中心
 ├── constants      # 常量和路由定义
 ├── errors         # 错误分类、标准化和用户友好文案
 ├── feedback       # toast、loading、confirm 等统一反馈 API
@@ -51,6 +53,7 @@ src
 ## 已补充的正式能力
 
 - `mock/index.ts` 提供开发期 mock 登录、刷新 token、当前用户和异常场景
+- `src/config/app.ts` 提供 API 地址、请求超时、文件超时、主题默认开关和 mock 场景配置
 - `src/api/core/http.ts` 提供统一错误处理和 toast 反馈
 - `src/api/core/auth.ts` 提供 token 持久化、清理和 refresh token 串行刷新
 - `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
@@ -67,7 +70,11 @@ src
 
 ## Mock 场景
 
-开发期 mock 支持成功、登录失败、401、500、空用户和 refresh token 失败等场景，可通过 `/mock/scenario`、请求 query、请求 header 或 `MOCK_SCENARIO` 环境变量切换。详细用法见 `docs/mock-scenarios.md`。
+开发期 mock 支持成功、登录失败、401、500、空用户和 refresh token 失败等场景，可通过 `/mock/scenario`、请求 query、请求 header 或 `TARO_APP_MOCK_SCENARIO` 环境变量切换。详细用法见 `docs/mock-scenarios.md`。
+
+## 配置中心
+
+应用配置统一收口在 `src/config/app.ts`。业务代码优先通过 `appConfig`、`buildApiUrl` 等方法读取配置，不直接散落读取 `process.env.TARO_APP_*`。目前已覆盖 API base URL、请求超时、文件超时、主题默认开关和 mock 场景。详细配置项见 `docs/config.md`。
 
 ## 权限能力
 

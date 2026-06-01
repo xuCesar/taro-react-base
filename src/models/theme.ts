@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { getStorageSync, removeStorageSync, setStorageSync } from '@tarojs/taro'
 import { persist, createJSONStorage, type StateStorage } from 'zustand/middleware'
+import { appConfig } from '@/config/app'
 import { DEFAULT_THEME, THEMES, type ThemeName } from '@/theme'
 import { createSelectors } from './selectors'
 
@@ -38,13 +39,13 @@ function readStoredThemeSwitchEnabled() {
   try {
     const value = getStorageSync('theme-store')
     if (!value)
-      return false
+      return appConfig.themeSwitchDefaultEnabled
 
     const parsed = typeof value === 'string' ? JSON.parse(value) : value
-    return parsed?.state?.themeSwitchEnabled === true
+    return parsed?.state?.themeSwitchEnabled ?? appConfig.themeSwitchDefaultEnabled
   }
   catch {
-    return false
+    return appConfig.themeSwitchDefaultEnabled
   }
 }
 

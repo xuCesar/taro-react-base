@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { ensureAccessToken } from '@/api/core/auth'
+import { appConfig, buildApiUrl } from '@/config/app'
 import { AppErrorType, RequestError } from '@/errors'
 import { hideLoading, showLoading, toastError, toastSuccess } from '@/feedback'
 
@@ -32,13 +33,6 @@ export interface DownloadFileOptions extends FileRequestOptions {
 export interface DownloadAndOpenFileOptions extends DownloadFileOptions {
   fileType?: keyof Taro.openDocument.FileType
   showMenu?: boolean
-}
-
-function buildFileUrl(url: string) {
-  if (/^https?:\/\//.test(url))
-    return url
-
-  return `${process.env.TARO_APP_API_BASE || ''}${url}`
 }
 
 async function buildHeader(options: FileRequestOptions) {
@@ -85,11 +79,11 @@ export async function uploadFile<T = unknown>(options: UploadFileOptions) {
 
   try {
     const task = Taro.uploadFile({
-      url: buildFileUrl(options.url),
+      url: buildApiUrl(options.url),
       filePath: options.filePath,
       name: options.name || 'file',
       formData: options.formData,
-      timeout: options.timeout || 30000,
+      timeout: options.timeout || appConfig.fileTimeout,
       header: await buildHeader(options)
     })
 
@@ -126,9 +120,9 @@ export async function downloadFile(options: DownloadFileOptions) {
 
   try {
     const task = Taro.downloadFile({
-      url: buildFileUrl(options.url),
+      url: buildApiUrl(options.url),
       filePath: options.filePath,
-      timeout: options.timeout || 30000,
+      timeout: options.timeout || appConfig.fileTimeout,
       header: await buildHeader(options)
     })
 

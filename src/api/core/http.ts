@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { appConfig, buildApiUrl, getMockScenarioHeader } from '@/config/app'
 import { toastError } from '@/feedback'
 import { redirectToLogin } from '@/router/auth'
 import { clearAuthState, ensureAccessToken } from './auth'
@@ -20,6 +21,7 @@ export async function request<T>(url: string, options: RequestOptions = {}) {
   const token = options.skipAuth ? null : await ensureAccessToken()
   const header: Record<string, unknown> = {
     'Content-Type': 'application/json',
+    ...getMockScenarioHeader(),
     ...(options.header || {})
   }
 
@@ -28,10 +30,10 @@ export async function request<T>(url: string, options: RequestOptions = {}) {
 
   return new Promise<T>((resolve, reject) => {
     Taro.request<ApiResponse<T>>({
-      url: `${process.env.TARO_APP_API_BASE || ''}${url}`,
+      url: buildApiUrl(url),
       method: options.method || 'GET',
       data: options.data,
-      timeout: options.timeout || 15000,
+      timeout: options.timeout || appConfig.requestTimeout,
       header,
       success: (res) => {
         const payload = res.data

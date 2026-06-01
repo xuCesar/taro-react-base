@@ -19,7 +19,7 @@ function isMockScenario(value: unknown): value is MockScenario {
 function getScenario(req: Request): MockScenario {
   const queryScenario = req.query.scenario
   const headerScenario = req.headers['x-mock-scenario']
-  const envScenario = process.env.MOCK_SCENARIO
+  const envScenario = process.env.TARO_APP_MOCK_SCENARIO || process.env.MOCK_SCENARIO
 
   const candidate = Array.isArray(queryScenario)
     ? queryScenario[0]

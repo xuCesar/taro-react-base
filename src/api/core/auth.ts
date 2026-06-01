@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { cache } from '@/cache'
+import { buildApiUrl, getMockScenarioHeader } from '@/config/app'
 import { useUserStore } from '@/models/user'
 import { redirectToLogin } from '@/router/auth'
 import { AppErrorType, RequestError } from './errors'
@@ -42,11 +43,12 @@ async function requestRefreshToken() {
 
   return new Promise<string | null>((resolve, reject) => {
     Taro.request({
-      url: `${process.env.TARO_APP_API_BASE || ''}/auth/refresh`,
+      url: buildApiUrl('/auth/refresh'),
       method: 'POST',
       data: { refreshToken },
       header: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        ...getMockScenarioHeader()
       },
       success: (res) => {
         const payload = res.data as {
