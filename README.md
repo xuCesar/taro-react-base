@@ -55,6 +55,7 @@ src
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
 - `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
 - `src/errors/` 和 `src/feedback/` 提供统一错误分类、友好文案和用户反馈 API
+- `src/utils/updateManager.ts` 提供小程序版本更新检测和重启提示
 
 ## 错误与反馈
 
