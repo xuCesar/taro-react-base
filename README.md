@@ -14,6 +14,7 @@
 - Taro.request 封装请求层
 - Typed Cache
 - 配置中心
+- 多语言基础能力
 - 类型安全路由
 - mock 开发数据
 - refresh token 基础链路
@@ -34,6 +35,7 @@ src
 ├── feedback       # toast、loading、confirm 等统一反馈 API
 ├── files          # 文件上传、下载、打开封装
 ├── hooks          # 业务 hooks
+├── i18n           # 多语言字典与原生文案同步
 ├── lib            # 第三方库初始化
 ├── models         # Zustand store
 ├── pages          # 页面
@@ -53,12 +55,13 @@ src
 ## 已补充的正式能力
 
 - `mock/index.ts` 提供开发期 mock 登录、刷新 token、当前用户和异常场景
-- `src/config/app.ts` 提供 API 地址、请求超时、文件超时、主题默认开关和 mock 场景配置
+- `src/config/app.ts` 提供 API 地址、请求超时、文件超时、主题默认开关、多语言默认开关和 mock 场景配置
 - `src/api/core/http.ts` 提供统一错误处理和 toast 反馈
 - `src/api/core/auth.ts` 提供 token 持久化、清理和 refresh token 串行刷新
 - `src/api/template/` 和 `templates/business-module/` 提供推荐的业务模块写法
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
 - `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
+- `src/i18n/`、`src/models/i18n.ts` 和 `src/hooks/useI18n.ts` 提供默认关闭的中英文切换能力
 - `src/errors/` 和 `src/feedback/` 提供统一错误分类、友好文案和用户反馈 API
 - `src/files/` 提供带 token、进度、错误反馈的文件上传和下载封装
 - `src/utils/updateManager.ts` 提供小程序版本更新检测和重启提示
@@ -74,7 +77,11 @@ src
 
 ## 配置中心
 
-应用配置统一收口在 `src/config/app.ts`。业务代码优先通过 `appConfig`、`buildApiUrl` 等方法读取配置，不直接散落读取 `process.env.TARO_APP_*`。目前已覆盖 API base URL、请求超时、文件超时、主题默认开关和 mock 场景。详细配置项见 `docs/config.md`。
+应用配置统一收口在 `src/config/app.ts`。业务代码优先通过 `appConfig`、`buildApiUrl` 等方法读取配置，不直接散落读取 `process.env.TARO_APP_*`。目前已覆盖 API base URL、请求超时、文件超时、主题默认开关、多语言默认开关和 mock 场景。详细配置项见 `docs/config.md`。
+
+## 多语言能力
+
+多语言入口在 `src/i18n/index.ts`，当前内置 `zh-CN` 和 `en-US`，默认中文且默认关闭。页面通过 `useI18n().t(key)` 读取文案；启用后会同步页面文案、原生导航标题和 tabBar 文案。“我的”页提供启用开关和语言选择。详细用法见 `docs/i18n.md`。
 
 ## 权限能力
 

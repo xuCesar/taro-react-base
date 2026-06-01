@@ -5,11 +5,13 @@ import { LogIn, ShieldCheck } from 'lucide-react-taro'
 import PageWrapper from '@/components/PageWrapper'
 import { type LoginParams, loginApi } from '@/api/endpoints/auth'
 import { saveAuthPayload } from '@/api/core/auth'
+import { useI18n } from '@/hooks/useI18n'
 import { redirectAfterLogin } from '@/router/auth'
 
 export default function LoginPage() {
   const [account, setAccount] = useState('demo')
   const [password, setPassword] = useState('123456')
+  const { t } = useI18n()
 
   const loginMutation = useMutation({
     mutationFn: (params: LoginParams) => loginApi(params),
@@ -33,31 +35,31 @@ export default function LoginPage() {
 
   return (
     <PageWrapper
-      title="Taro React Base"
-      description="轻量工程骨架，内置路由、缓存、认证、页面状态和服务端状态能力。"
+      title={t('login.appTitle')}
+      description={t('login.description')}
       contentClassName="justify-center"
     >
       <View className="app-card p-6">
         <View className="app-icon-surface mb-4 flex h-12 w-12 items-center justify-center rounded-full">
           <ShieldCheck size={24} color="inherit" />
         </View>
-        <Text className="app-text-primary block text-xl font-semibold">登录入口</Text>
+        <Text className="app-text-primary block text-xl font-semibold">{t('login.entryTitle')}</Text>
         <Text className="app-text-muted mt-2 block text-sm leading-6">
-          当前仍可命中 mock 登录接口，参数结构已按真实登录预留。
+          {t('login.entryDescription')}
         </Text>
         <View className="mt-5 flex flex-col gap-3">
-          <Text className="app-text-muted text-xs font-medium">账号</Text>
+          <Text className="app-text-muted text-xs font-medium">{t('login.account')}</Text>
           <Input
             className="app-input"
-            placeholder="账号"
+            placeholder={t('login.accountPlaceholder')}
             value={account}
             onInput={event => setAccount(event.detail.value)}
           />
-          <Text className="app-text-muted text-xs font-medium">密码</Text>
+          <Text className="app-text-muted text-xs font-medium">{t('login.password')}</Text>
           <Input
             className="app-input"
             password
-            placeholder="密码"
+            placeholder={t('login.passwordPlaceholder')}
             value={password}
             onInput={event => setPassword(event.detail.value)}
           />
@@ -70,7 +72,7 @@ export default function LoginPage() {
         >
           <View className="flex items-center justify-center gap-2">
             <LogIn size={20} color="#ffffff" />
-            <Text className="text-white">账号登录</Text>
+            <Text className="text-white">{t('login.submit')}</Text>
           </View>
         </Button>
       </View>

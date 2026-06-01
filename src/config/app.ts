@@ -12,6 +12,8 @@ export const appConfig = {
   requestTimeout: readNumberEnv(process.env.TARO_APP_REQUEST_TIMEOUT, 15000),
   fileTimeout: readNumberEnv(process.env.TARO_APP_FILE_TIMEOUT, 30000),
   themeSwitchDefaultEnabled: process.env.TARO_APP_THEME_SWITCH_ENABLED === 'true',
+  i18nDefaultEnabled: process.env.TARO_APP_I18N_ENABLED === 'true',
+  defaultLocale: process.env.TARO_APP_DEFAULT_LOCALE || 'zh-CN',
   mockScenario: process.env.TARO_APP_MOCK_SCENARIO || ''
 }
 

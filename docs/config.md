@@ -10,6 +10,8 @@
 | `TARO_APP_REQUEST_TIMEOUT` | `15000` | 普通请求超时时间，单位毫秒。 |
 | `TARO_APP_FILE_TIMEOUT` | `30000` | 文件上传、下载超时时间，单位毫秒。 |
 | `TARO_APP_THEME_SWITCH_ENABLED` | `false` | 主题切换能力是否默认启用。用户本地设置会优先于该默认值。 |
+| `TARO_APP_I18N_ENABLED` | `false` | 多语言能力是否默认启用。用户本地设置会优先于该默认值。 |
+| `TARO_APP_DEFAULT_LOCALE` | `zh-CN` | 默认语言。当前支持 `zh-CN` 和 `en-US`。 |
 | `TARO_APP_MOCK_SCENARIO` | 空字符串 | 开发期 mock 场景。设置后请求会自动携带 `x-mock-scenario`。 |
 
 ## 使用约定
@@ -25,6 +27,7 @@ TARO_APP_API_BASE=http://localhost:3000
 TARO_APP_REQUEST_TIMEOUT=15000
 TARO_APP_FILE_TIMEOUT=30000
 TARO_APP_THEME_SWITCH_ENABLED=false
+TARO_APP_I18N_ENABLED=false
+TARO_APP_DEFAULT_LOCALE=zh-CN
 TARO_APP_MOCK_SCENARIO=unauthorized
 ```
-

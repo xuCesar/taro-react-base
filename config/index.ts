@@ -9,6 +9,25 @@ const disabled = ['h5', 'rn'].includes(process.env.TARO_ENV || '')
 const taroEnv = process.env.TARO_ENV || 'weapp'
 const outputRoot = `dist/${taroEnv}`
 
+const appEnvDefaults = {
+  TARO_APP_API_BASE: '',
+  TARO_APP_REQUEST_TIMEOUT: '15000',
+  TARO_APP_FILE_TIMEOUT: '30000',
+  TARO_APP_THEME_SWITCH_ENABLED: 'false',
+  TARO_APP_I18N_ENABLED: 'false',
+  TARO_APP_DEFAULT_LOCALE: 'zh-CN',
+  TARO_APP_MOCK_SCENARIO: ''
+}
+
+function getAppEnv() {
+  return Object.fromEntries(
+    Object.entries(appEnvDefaults).map(([key, fallback]) => [
+      key,
+      JSON.stringify(process.env[key] || fallback)
+    ])
+  )
+}
+
 export default defineConfig(async (merge) => {
   const baseConfig: UserConfigExport = {
     projectName: 'taro-react-base',
@@ -22,6 +41,7 @@ export default defineConfig(async (merge) => {
     },
     sourceRoot: 'src',
     outputRoot,
+    env: getAppEnv(),
     copy: {
       patterns: [
         {

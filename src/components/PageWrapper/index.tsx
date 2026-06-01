@@ -1,5 +1,6 @@
 import type { PropsWithChildren, ReactNode } from 'react'
 import { Text, View } from '@tarojs/components'
+import { useSyncNativeI18n } from '@/hooks/useI18n'
 import { useSyncNativeTheme, useTheme } from '@/hooks/useTheme'
 
 interface PageWrapperProps extends PropsWithChildren {
@@ -18,6 +19,7 @@ export default function PageWrapper({
 }: PageWrapperProps) {
   const { effectiveTheme } = useTheme()
   useSyncNativeTheme({ syncOnPageShow: true })
+  useSyncNativeI18n({ title, syncOnPageShow: true, syncKey: effectiveTheme })
 
   return (
     <View className={`app-page app-theme-${effectiveTheme} min-h-screen px-5 py-7`}>
