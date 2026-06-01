@@ -34,6 +34,7 @@ src
 ├── lib            # 第三方库初始化
 ├── models         # Zustand store
 ├── pages          # 页面
+├── permissions    # 小程序授权检查与引导
 ├── router         # 类型安全路由
 ├── theme          # 主题配置
 └── utils          # 启动与工具函数
@@ -56,6 +57,7 @@ src
 - `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
 - `src/errors/` 和 `src/feedback/` 提供统一错误分类、友好文案和用户反馈 API
 - `src/utils/updateManager.ts` 提供小程序版本更新检测和重启提示
+- `src/permissions/` 提供位置、相册、录音、摄像头等授权检查与设置引导
 
 ## 错误与反馈
 
@@ -64,6 +66,10 @@ src
 ## Mock 场景
 
 开发期 mock 支持成功、登录失败、401、500、空用户和 refresh token 失败等场景，可通过 `/mock/scenario`、请求 query、请求 header 或 `MOCK_SCENARIO` 环境变量切换。详细用法见 `docs/mock-scenarios.md`。
+
+## 权限能力
+
+小程序授权封装在 `src/permissions`。业务使用 `ensureLocationPermission`、`ensureAlbumPermission`、`ensureRecordPermission`、`ensureCameraPermission` 等方法即可完成“检查授权 -> 请求授权 -> 拒绝后引导设置”的流程。
 
 ## 主题扩展
 
