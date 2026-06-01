@@ -30,6 +30,7 @@ src
 ├── constants      # 常量和路由定义
 ├── errors         # 错误分类、标准化和用户友好文案
 ├── feedback       # toast、loading、confirm 等统一反馈 API
+├── files          # 文件上传、下载、打开封装
 ├── hooks          # 业务 hooks
 ├── lib            # 第三方库初始化
 ├── models         # Zustand store
@@ -56,6 +57,7 @@ src
 - `src/components/` 提供 PageWrapper、空态、加载态、错误态等页面级基础设施
 - `src/theme/` 和 `src/models/theme.ts` 提供 light/dark 主题切换与持久化
 - `src/errors/` 和 `src/feedback/` 提供统一错误分类、友好文案和用户反馈 API
+- `src/files/` 提供带 token、进度、错误反馈的文件上传和下载封装
 - `src/utils/updateManager.ts` 提供小程序版本更新检测和重启提示
 - `src/permissions/` 提供位置、相册、录音、摄像头等授权检查与设置引导
 
@@ -70,6 +72,10 @@ src
 ## 权限能力
 
 小程序授权封装在 `src/permissions`。业务使用 `ensureLocationPermission`、`ensureAlbumPermission`、`ensureRecordPermission`、`ensureCameraPermission` 等方法即可完成“检查授权 -> 请求授权 -> 拒绝后引导设置”的流程。
+
+## 文件能力
+
+文件上传、下载和打开封装在 `src/files`，默认复用 API base URL、登录 token、统一错误反馈和 loading。详细用法见 `docs/files.md`。
 
 ## 主题扩展
 
